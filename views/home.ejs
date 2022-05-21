@@ -1,0 +1,30 @@
+<link rel="stylesheet" href="/css/style.css">
+
+<section class="text-center pt-5" id="testmonial">
+    <!-- Container -->
+    <div class="container">
+        <h3 class="mt-3 mb-5 pb-5">HOME PAGE</h3>
+        <a href="/create" id="link">Create New Project</a>
+
+        <!-- Row -->
+        <div class="row">
+            <!-- displaying the projects on the home page -->
+            <% for(let i of project){ %>
+            <div class="col-sm-10 col-md-4 m-auto">
+                <a href='/project-page?id=<%= i._id %>'>
+                <div class="testmonial-wrapper" >
+                    
+                    <img src="/images/home-project.jpg" alt="Client Image">
+                    <h6 class="title mb-3"><%= i.name %></h6>
+                    <b>NAME </b><p class="left"><%= i.name %></p>
+                    <b>DESCRIPTION </b><p class="left"><%= i.description %></p>
+                    <b>AUTHOR </b><p class="left"><%= i.author %></p>
+                    
+                </div>
+                </a>
+            </div>
+            <% } %>
+        </div><!-- end of Row -->
+                   
+    </div><!-- End of Cotanier -->  
+</section><!-- End of Testmonial Section -->

@@ -1,0 +1,84 @@
+<link rel="stylesheet" href="/css/style.css">
+
+<section class="text-center pt-5" id="testmonial">
+    <!-- Container -->
+    <div class="container">
+        <h3 class="mt-3 mb-5 pb-5">PROJECT: <%= projects.name %></h3>
+        <div id="link1">
+        <a href="/issue-page?id=<%= projects.id %>" >Create An Issue</a><br>
+        <a href="/">Go To Home</a>
+        </div>
+        <a id="btn" href="#filter">Filter elements</a><br>
+
+        <!-- Row -->
+        <div class="row">
+            <!-- j=0 for coming from home page -->
+            <% if(j==0){ %>
+                <% for(let i of projects.bugs){ %>
+            <div class="col-sm-10 col-md-4 m-auto">                
+                <div class="testmonial-wrapper">
+                    <img src="/images/bug.png" alt="Client Image">
+                    <h6 class="title mb-3"><%= i.title %></h6><br>
+                    <b>DESCRIPTION </b><%= i.description %><br>
+                    <b>Label: </b><%= i.labels %><br>
+                    <b>AUTHOR </b><%= i.author %>
+                </div>               
+            </div>
+            <% } %>
+            <% } %>
+            <!-- j=1 if coming from issue created page -->
+            <% if(j==1){ %>
+                <%  for(let i of bugs){ %>
+                <div class="col-sm-10 col-md-4 m-auto">                
+                    <div class="testmonial-wrapper">
+                        <img src="/images/bug.png" alt="Client Image">
+                        <h6 class="title mb-3"><%= i.title %></h6><br>
+                        <b>DESCRIPTION </b><%= i.description %><br>
+                        <b>Label: </b><%= i.labels %><br>
+                        <b>AUTHOR </b><%= i.author %>
+                    </div>
+                </div>
+                <% } %>
+                <% } %>
+        </div>
+        
+        <!-- creating filters -->    
+        <div id="filter">
+            <form method="post" action="/label-filter">
+            <b class="gap">Filter by label</b>
+            <span class="gap">
+             <input type="checkbox" name="red" value="red"> Red
+             <input type="checkbox" name="green" value="green"> Green
+             <input type="checkbox" name="blue" value="blue"> Blue
+             <input type="hidden" name="projectid" value="<%= projects.id %>">
+             <input type="submit">
+            </span><br>
+            </form>
+            <br>
+            
+            <form method="post" action="/author-filter">
+            <b class="gap">Filter by Author</b>
+            <span class="gap">
+             <% for(let i of projects.bugs){ %>
+                <input type="checkbox" name="<%= i.author %>" value="<%= i.author %>"> <%= i.author %>
+            <% } %>
+            <input type="hidden" name="projectid" value="<%= projects.id %>">
+            <input type="submit">
+            </span><br>
+            </form>
+            
+            <br>
+            <form method="post" action="/search">
+            <b class="gap">Search by title & description</b>
+            <span class="gap">
+            title:  <input type="text" name="title">
+            description: <input type="text" name="description">
+            <input type="hidden" name="projectid" value="<%= projects.id %>">
+            <input type="submit">
+            </span>
+            </form>
+            <a id="clear" href="/project-page?id=<%= projects.id %>">clear filter</a>
+        </div>          
+    </div><!-- End of Cotanier -->  
+</section><!-- End of Testmonial Section -->
+<script src="js/style.js"></script>
