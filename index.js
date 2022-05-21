@@ -22,7 +22,7 @@ const mongoose = require('./config/mongoose');
 //setting up server
 app.listen(port,function(err){
     if(err){
-    console.log(err);
+    console.log('error',err);
     return;
     }
     console.log('server running');
